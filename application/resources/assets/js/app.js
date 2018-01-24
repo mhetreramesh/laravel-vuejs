@@ -11,23 +11,29 @@ import App from './App.vue';
 import CreateItem from './components/CreateItem.vue';
 import DisplayItem from './components/DisplayItem.vue';
 import EditItem from './components/EditItem.vue';
+import DisplayCategory from './components/DisplayCategory.vue';
 
 const routes = [
+  {
+        name: 'DisplayItem',
+        path: '/',
+        component: DisplayItem
+  },
   {
     name: 'CreateItem',
     path: '/items/create',
     component: CreateItem
   },
   {
-        name: 'DisplayItem',
-        path: '/',
-        component: DisplayItem
-    },
-    {
-          name: 'EditItem',
-          path: '/edit/:id',
-          component: EditItem
-      }
+        name: 'EditItem',
+        path: '/edit/:id',
+        component: EditItem
+  },
+  {
+        name: 'DisplayCategory',
+        path: '/categories',
+        component: DisplayCategory
+  }
 ];
 
 const router = new VueRouter({ mode: 'history', routes: routes});
