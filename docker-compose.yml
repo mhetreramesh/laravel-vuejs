@@ -24,7 +24,7 @@ services:
     links:
       - app
     ports:
-      - 8092:80
+      - 8091:80
 
   # The Database
   database:
@@ -37,7 +37,7 @@ services:
       - "MYSQL_PASSWORD=tradebyte"
       - "MYSQL_ROOT_PASSWORD=secret"
     ports:
-        - "33063:3306"
+        - "33062:3306"
 
 volumes:
   db:
