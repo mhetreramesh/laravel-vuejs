@@ -12,6 +12,7 @@ import CreateItem from './components/CreateItem.vue';
 import DisplayItem from './components/DisplayItem.vue';
 import EditItem from './components/EditItem.vue';
 import DisplayCategory from './components/DisplayCategory.vue';
+import CreateCategory from './components/CreateCategory.vue';
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
         name: 'DisplayCategory',
         path: '/categories',
         component: DisplayCategory
+  },
+  {
+    name: 'CreateCategory',
+    path: '/categories/create',
+    component: CreateCategory
   }
 ];
 

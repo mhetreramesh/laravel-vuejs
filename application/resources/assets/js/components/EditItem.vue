@@ -41,7 +41,7 @@
         methods: {
             getItem()
             {
-              let uri = window.Laravel.baseUrl+'/items/${this.$route.params.id}/edit';
+              let uri = window.Laravel.baseUrl+'/api/items/'+this.$route.params.id+'/edit';
                 this.axios.get(uri).then((response) => {
                     this.item = response.data;
                 });
@@ -49,7 +49,7 @@
 
             updateItem()
             {
-              let uri = window.Laravel.baseUrl+'/items/'+this.$route.params.id;
+              let uri = window.Laravel.baseUrl+'/api/items/'+this.$route.params.id;
                 this.axios.patch(uri, this.item).then((response) => {
                   this.$router.push({name: 'DisplayItem'});
                 });

@@ -23,7 +23,7 @@
                 <tr v-for="item in items">
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
-                    <td>{{ item.price }}</td>
+                    <td>€{{ item.price }}</td>
                     <td><router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link></td>
                     <td><button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
                 </tr>
@@ -49,14 +49,14 @@
         methods: {
             fetchItems()
             {
-              let uri = window.Laravel.baseUrl+'/items';
+              let uri = window.Laravel.baseUrl+'/api/items';
               this.axios.get(uri).then((response) => {
                   this.items = response.data;
               });
             },
             deleteItem(id)
             {
-              let uri = window.Laravel.baseUrl+`/items/${id}`;
+              let uri = window.Laravel.baseUrl+'/items/${id}';
               this.items.splice(id, 1);
               this.axios.delete(uri);
             }
