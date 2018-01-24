@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h1>Products</h1>
+        <h1>Articles</h1>
 
         <div class="row">
           <div class="col-md-10"></div>
           <div class="col-md-2">
-            <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary">Create Item</router-link>
+            <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary">Create Article</router-link>
           </div>
         </div><br />
 
@@ -49,14 +49,14 @@
         methods: {
             fetchItems()
             {
-              let uri = 'http://pim.tradebyte.lcl/items';
+              let uri = window.Laravel.baseUrl+'/items';
               this.axios.get(uri).then((response) => {
                   this.items = response.data;
               });
             },
             deleteItem(id)
             {
-              let uri = `http://pim.tradebyte.lcl/items/${id}`;
+              let uri = window.Laravel.baseUrl+`/items/${id}`;
               this.items.splice(id, 1);
               this.axios.delete(uri);
             }

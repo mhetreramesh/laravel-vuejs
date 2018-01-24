@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Create An Item</h1>
+    <h1>Create An Article</h1>
     <form v-on:submit.prevent="addItem">
       <div class="row">
         <div class="col-md-6">
@@ -34,7 +34,7 @@
     },
     methods: {
       addItem(){
-        let uri = 'http://pim.tradebyte.lcl/items';
+        let uri = window.Laravel.baseUrl+'/items';
         this.axios.post(uri, this.item).then((response) => {
           this.$router.push({name: 'DisplayItem'})
         })
