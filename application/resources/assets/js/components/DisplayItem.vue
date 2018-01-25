@@ -52,16 +52,21 @@
         methods: {
             fetchItems()
             {
-              let uri = `${window.Laravel.baseUrl}/api/items`
-              this.axios.get(uri).then((response) => {
-                  this.loading = false
-                  this.items = response.data
-              });
+                let uri = `${window.Laravel.baseUrl}/api/items`
+                this.axios.get(uri).then((response) => {
+                    this.loading = false
+                    this.items = response.data
+                });
             },
             deleteItem(id)
             {
-              let uri = `${window.Laravel.baseUrl}/api/items/${id}`
-              this.$router.push({path: '/'})
+                for (var key in this.items) {
+                    if (this.items[key].id == id) {
+                        this.items.splice(key, 1);
+                    }
+                }
+                let uri = `${window.Laravel.baseUrl}/api/items/${id}`
+                this.axios.delete(uri);
             }
         }
     }

@@ -28,7 +28,7 @@
       addCategory(){
         let uri = `${window.Laravel.baseUrl}/api/categories`;
         this.axios.post(uri, this.category).then((response) => {
-          this.$router.push({name: 'CreateCategory'})
+          this.$router.push({path: '/categories'})
         })
     }
   }

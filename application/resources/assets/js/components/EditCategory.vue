@@ -46,7 +46,7 @@
             {
               let uri = `${window.Laravel.baseUrl}/api/categories/${this.$route.params.id}`;
                 this.axios.patch(uri, this.category).then((response) => {
-                  this.$router.push({name: 'DisplayCategory'});
+                  this.$router.push({path: '/categories'})
                 });
             }
         }

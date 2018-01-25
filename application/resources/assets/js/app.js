@@ -17,29 +17,29 @@ import EditCategory from './components/EditCategory.vue';
 
 const routes = [
   {
-        name: 'DisplayItem',
-        path: '/',
-        component: DisplayItem
+      name: 'DisplayItem',
+      path: '/',
+      component: DisplayItem
   },
   {
-    name: 'CreateItem',
-    path: '/items/create',
-    component: CreateItem
+      name: 'CreateItem',
+      path: '/items/create',
+      component: CreateItem
   },
   {
-        name: 'EditItem',
-        path: '/edit/:id',
-        component: EditItem
+      name: 'EditItem',
+      path: '/edit/:id',
+      component: EditItem
   },
   {
-        name: 'DisplayCategory',
-        path: '/categories',
-        component: DisplayCategory
+      name: 'DisplayCategory',
+      path: '/categories',
+      component: DisplayCategory
   },
   {
-    name: 'CreateCategory',
-    path: '/categories/create',
-    component: CreateCategory
+      name: 'CreateCategory',
+      path: '/categories/create',
+      component: CreateCategory
   },
   {
       name: 'EditCategory',
@@ -48,5 +48,15 @@ const routes = [
   }
 ];
 
-const router = new VueRouter({ mode: 'history', routes: routes});
+var router = new VueRouter({ mode: 'history', routes: routes});
+
+/*
+var router = new VueRouter({
+      history: true,
+      root: '/app'
+  });
+  router.map(routes);
+  router.start(App, '#app');
+  */
+
 new Vue(Vue.util.extend({ router }, App)).$mount('#app');
