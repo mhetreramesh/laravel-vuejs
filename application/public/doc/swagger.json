@@ -5,7 +5,7 @@
         "version": "1.0.0",
         "title": "Tradebye PIM REST API"
     },
-    "host": "pim.tradebyte.lcl/api",
+    "host": "localhost:8091/api",
     "basePath": "/",
     "tags": [
         {

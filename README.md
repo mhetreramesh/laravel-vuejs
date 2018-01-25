@@ -24,6 +24,8 @@
 6. Next type this command: `docker-compose up -d` to start required docker environment
 7. It will start the server at this URL http://localhost:8091
 
-### For Dev environment:
+### For Developers:
 1. `npm run watch`
-2. To run tests `composer test`
+2. To run unit tests `composer test`
+3. Browser test `php artisan dusk`
+4. API doc available at `http://localhost:8091/doc/index.html`
