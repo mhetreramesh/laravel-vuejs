@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
+use App\Models\Category;
 
-class ItemController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        return response()->json($items);
+        $categories = Category::all();
+        return response()->json($categories);
     }
 
     /**
@@ -36,11 +36,10 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item([
+        $category = new Category([
           'name' => $request->get('name'),
-          'price' => $request->get('price')
         ]);
-        $item->save();
+        $category->save();
         return response()->json('Successfully added');
     }
 
@@ -63,8 +62,8 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        $item = Item::find($id);
-        return response()->json($item);
+        $category = Category::find($id);
+        return response()->json($category);
     }
 
     /**
@@ -76,10 +75,9 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = Item::find($id);
-        $item->name = $request->get('name');
-        $item->price = $request->get('price');
-        $item->save();
+        $category = Category::find($id);
+        $category->name = $request->get('name');
+        $category->save();
 
         return response()->json('Successfully Updated');
     }
@@ -92,8 +90,8 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-      $item = Item::find($id);
-      $item->delete();
+      $category = Category::find($id);
+      $category->delete();
 
       return response()->json('Successfully Deleted');
     }

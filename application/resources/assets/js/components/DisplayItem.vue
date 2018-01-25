@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h1>Products</h1>
+        <h1>Articles</h1>
 
         <div class="row">
           <div class="col-md-10"></div>
           <div class="col-md-2">
-            <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary">Create Item</router-link>
+            <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary">Create Article</router-link>
           </div>
         </div><br />
-
-        <table class="table table-hover">
+        <div class="loading" v-if="loading">
+            Loading...
+        </div>
+        <table class="table table-hover" v-else>
             <thead>
             <tr>
                 <td>ID</td>
@@ -23,7 +25,7 @@
                 <tr v-for="item in items">
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
-                    <td>{{ item.price }}</td>
+                    <td>{{ item.price }}€</td>
                     <td><router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link></td>
                     <td><button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
                 </tr>
@@ -37,28 +39,29 @@
     export default {
         data(){
             return{
-                items: []
+                items: [],
+                loading: true,
             }
         },
 
         created: function()
         {
-            this.fetchItems();
+            this.fetchItems()
         },
 
         methods: {
             fetchItems()
             {
-              let uri = 'http://pim.tradebyte.lcl/items';
+              let uri = `${window.Laravel.baseUrl}/api/items`
               this.axios.get(uri).then((response) => {
-                  this.items = response.data;
+                  this.loading = false
+                  this.items = response.data
               });
             },
             deleteItem(id)
             {
-              let uri = `http://pim.tradebyte.lcl/items/${id}`;
-              this.items.splice(id, 1);
-              this.axios.delete(uri);
+              let uri = `${window.Laravel.baseUrl}/api/items/${id}`
+              this.$router.push({path: '/'})
             }
         }
     }
