@@ -26,4 +26,5 @@
 
 ### For Dev environment:
 1. `npm run watch`
-2. To run tests `composer test`
+2. To run unit tests `composer test`
+3. Browser test `php artisan dusk`

@@ -3,11 +3,11 @@
         <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><i class="fa fa-database"></i> Tradebyte PIM</a>
+                <router-link :exact=true :to="{ name: 'DisplayItem' }" class="navbar-brand" href="/"><i class="fa fa-database"></i> Tradebyte PIM</router-link>
             </div>
             <ul class="nav navbar-nav">
                 <router-link tag="li" :exact=true :to="{ name: 'DisplayItem' }" active-class="active">
-                    <a href="/">Article</a>
+                    <a href="/">Articles</a>
                 </router-link>
                 <router-link tag="li" :to="{ name: 'DisplayCategory' }" active-class="active">
                     <a href="/categories">Categories</a>
