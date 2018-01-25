@@ -15,8 +15,9 @@
             <thead>
             <tr>
                 <td>ID</td>
-                <td>Item Name</td>
-                <td>Item Price</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.price }}€</td>
+                    <td>{{ item.quantity }}</td>
                     <td><router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link></td>
                     <td><button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
                 </tr>

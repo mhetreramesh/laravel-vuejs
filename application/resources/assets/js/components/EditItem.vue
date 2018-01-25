@@ -3,20 +3,35 @@
         <h1>Update Article</h1>
         <div class="row">
           <div class="col-md-10"></div>
-          <div class="col-md-2"><router-link :to="{ name: 'DisplayItem' }" class="btn btn-success">Return to Items</router-link></div>
+          <div class="col-md-2"><router-link :to="{ name: 'DisplayItem' }" class="btn btn-success">Return to Articles</router-link></div>
         </div>
         <div class="loading" v-if="loading">
             Loading...
         </div>
         <form v-on:submit.prevent="updateItem" v-else>
             <div class="form-group">
-                <label>Item Name</label>
+                <label>Name</label>
                 <input type="text" class="form-control" v-model="item.name">
             </div>
 
             <div class="form-group">
-                <label name="product_price">Item Price</label>
+                <label name="product_price">Price</label>
                 <input type="text" class="form-control" v-model="item.price">
+            </div>
+
+            <div class="form-group">
+                <label name="product_price">SKU</label>
+                <input type="text" class="form-control" v-model="item.sku">
+            </div>
+
+            <div class="form-group">
+                <label name="product_price">EAN</label>
+                <input type="text" class="form-control" v-model="item.ean">
+            </div>
+
+            <div class="form-group">
+                <label name="product_price">Quantity</label>
+                <input type="text" class="form-control" v-model="item.quantity">
             </div>
 
             <div class="form-group">
