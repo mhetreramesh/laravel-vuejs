@@ -5,11 +5,11 @@
         <div class="row">
           <div class="col-md-10"></div>
           <div class="col-md-2">
-            <router-link :to="{ name: 'CreateCategory' }" class="btn btn-primary">Create Category</router-link>
+            <router-link :to="{ name: 'CreateCategory' }" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Create Category</router-link>
           </div>
         </div><br />
         <div class="loading" v-if="loading">
-            Loading...
+            <i class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i>
         </div>
         <table class="table table-hover" v-else>
             <thead>
@@ -27,38 +27,33 @@
                     <td>{{ category.name }}</td>
                     <td>{{ category.parent ? category.parent.name : '-' }}</td>
                     <td>
-                        <router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary">Edit</router-link>
-                        <button class="btn btn-danger" v-on:click="deleteCategory(category.id)">Delete</button>
+                        <router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteCategory(category.id)"><i class="fa fa-trash"></i>  Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
     </div>
 </template>
 
 <script>
-
+    import VuePaginator from 'vuejs-paginator'
     export default {
+        components: {
+            VPaginator: VuePaginator
+        },
         data(){
             return{
                 categories: [],
                 loading: true,
+                resource_url: `${window.Laravel.baseUrl}/api/categories`
             }
         },
-
-        created: function()
-        {
-            this.fetchCategories()
-        },
-
         methods: {
-            fetchCategories()
-            {
-              let uri = `${window.Laravel.baseUrl}/api/categories`;
-              this.axios.get(uri).then((response) => {
-                  this.loading = false
-                  this.categories = response.data
-              });
+            updateResource(data){
+              this.categories = data
+              this.loading = false
             },
             deleteCategory(id)
             {

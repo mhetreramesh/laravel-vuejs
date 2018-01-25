@@ -21,8 +21,8 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">Update</button>
-                <router-link :to="{ name: 'DisplayCategory' }" class="btn btn-default">Cancel</router-link>
+                <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                <router-link :to="{ name: 'DisplayCategory' }" class="btn btn-default pull-right">Cancel</router-link>
             </div>
         </form>
     </div>
@@ -48,7 +48,7 @@
         methods: {
             fetchCategories()
             {
-                let uri = `${window.Laravel.baseUrl}/api/categories`;
+                let uri = `${window.Laravel.baseUrl}/api/categories/all`;
                 this.axios.get(uri).then((response) => {
                     this.categories = response.data
                     this.categories.unshift({ name: 'Select', id: '' })

@@ -14,6 +14,17 @@ class ItemController extends Controller
      */
     public function index()
     {
+        $items = Item::with('categories')->paginate(5);
+        return response()->json($items);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll()
+    {
         $items = Item::with('categories')->get();
         return response()->json($items);
     }

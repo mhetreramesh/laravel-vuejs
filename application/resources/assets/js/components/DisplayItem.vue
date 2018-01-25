@@ -5,11 +5,11 @@
         <div class="row">
           <div class="col-md-10"></div>
           <div class="col-md-2">
-            <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary">Create Article</router-link>
+            <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Create Article</router-link>
           </div>
         </div><br />
         <div class="loading" v-if="loading">
-            Loading...
+            <i class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i>
         </div>
         <table class="table table-hover" v-else>
             <thead>
@@ -33,37 +33,33 @@
                         <span class="badge" v-for="category of item.categories">{{ category.name }}</span>
                     </td>
                     <td>
-                        <router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link>
-                        <button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
+                        <router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteItem(item.id)"><i class="fa fa-trash"></i> Delete</button></td>
                 </tr>
             </tbody>
         </table>
+        <v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
     </div>
 </template>
 
 <script>
-
+    import VuePaginator from 'vuejs-paginator'
     export default {
+        components: {
+            VPaginator: VuePaginator
+        },
         data(){
             return{
                 items: [],
                 loading: true,
+                resource_url: `${window.Laravel.baseUrl}/api/items`
             }
         },
 
-        created: function()
-        {
-            this.fetchItems()
-        },
-
         methods: {
-            fetchItems()
-            {
-                let uri = `${window.Laravel.baseUrl}/api/items`
-                this.axios.get(uri).then((response) => {
-                    this.loading = false
-                    this.items = response.data
-                });
+            updateResource(data){
+              this.items = data
+              this.loading = false
             },
             deleteItem(id)
             {
