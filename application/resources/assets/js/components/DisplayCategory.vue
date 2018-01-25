@@ -8,12 +8,15 @@
             <router-link :to="{ name: 'CreateCategory' }" class="btn btn-primary">Create Category</router-link>
           </div>
         </div><br />
-
-        <table class="table table-hover">
+        <div class="loading" v-if="loading">
+            Loading...
+        </div>
+        <table class="table table-hover" v-else>
             <thead>
             <tr>
                 <td>ID</td>
-                <td>Category Name</td>
+                <td>Category</td>
+                <td>Parent</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -22,8 +25,11 @@
                 <tr v-for="category in categories">
                     <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
-                    <td><router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary">Edit</router-link></td>
-                    <td><button class="btn btn-danger" v-on:click="deleteCategory(category.id)">Delete</button></td>
+                    <td>{{ category.parent ? category.parent.name : '-' }}</td>
+                    <td>
+                        <router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary">Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteCategory(category.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -35,13 +41,14 @@
     export default {
         data(){
             return{
-                categories: []
+                categories: [],
+                loading: true,
             }
         },
 
         created: function()
         {
-            this.fetchCategories();
+            this.fetchCategories()
         },
 
         methods: {
@@ -49,13 +56,19 @@
             {
               let uri = `${window.Laravel.baseUrl}/api/categories`;
               this.axios.get(uri).then((response) => {
-                  this.categories = response.data;
+                  this.loading = false
+                  this.categories = response.data
               });
             },
             deleteCategory(id)
             {
-              let uri = `${window.Laravel.baseUrl}/api/categories/${id}`;
-              this.$router.push({path: '/categories'})
+                for (var key in this.categories) {
+                    if (this.categories[key].id == id) {
+                        this.categories.splice(key, 1)
+                    }
+                }
+                let uri = `${window.Laravel.baseUrl}/api/categories/${id}`
+                this.axios.delete(uri)
             }
         }
     }

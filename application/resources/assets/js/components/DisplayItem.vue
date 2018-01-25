@@ -15,8 +15,10 @@
             <thead>
             <tr>
                 <td>ID</td>
-                <td>Item Name</td>
-                <td>Item Price</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Categories</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -26,8 +28,13 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.price }}€</td>
-                    <td><router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link></td>
-                    <td><button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
+                    <td>{{ item.quantity }}</td>
+                    <td style="width:10em;">
+                        <span class="badge" v-for="category of item.categories">{{ category.name }}</span>
+                    </td>
+                    <td>
+                        <router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -52,16 +59,21 @@
         methods: {
             fetchItems()
             {
-              let uri = `${window.Laravel.baseUrl}/api/items`
-              this.axios.get(uri).then((response) => {
-                  this.loading = false
-                  this.items = response.data
-              });
+                let uri = `${window.Laravel.baseUrl}/api/items`
+                this.axios.get(uri).then((response) => {
+                    this.loading = false
+                    this.items = response.data
+                });
             },
             deleteItem(id)
             {
-              let uri = `${window.Laravel.baseUrl}/api/items/${id}`
-              this.$router.push({path: '/'})
+                for (var key in this.items) {
+                    if (this.items[key].id == id) {
+                        this.items.splice(key, 1);
+                    }
+                }
+                let uri = `${window.Laravel.baseUrl}/api/items/${id}`
+                this.axios.delete(uri);
             }
         }
     }

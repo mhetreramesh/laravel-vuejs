@@ -8,8 +8,16 @@
 
         <form v-on:submit.prevent="updateCategory">
             <div class="form-group">
+                <label>Parent Category</label>
+                <select v-model="category.parent_id" class="form-control">
+                <option v-for="tmpCategory in categories" v-bind:value="tmpCategory.id">
+                    {{ tmpCategory.name }}
+                </option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Category Name</label>
-                <input type="text" class="form-control" v-model="category.name">
+                <input type="text" class="form-control" v-model="category.name" required>
             </div>
 
             <div class="form-group">
@@ -25,28 +33,40 @@
     export default{
         data(){
             return{
-                category:{}
+                category:{},
+                categories: [
+                    { name: 'Select', id: '' }
+                ]
             }
         },
 
         created: function(){
-            this.getCategory();
+            this.getCategory()
+            this.fetchCategories()
         },
 
         methods: {
+            fetchCategories()
+            {
+                let uri = `${window.Laravel.baseUrl}/api/categories`;
+                this.axios.get(uri).then((response) => {
+                    this.categories = response.data
+                    this.categories.unshift({ name: 'Select', id: '' })
+                });
+            },
             getCategory()
             {
-              let uri = `${window.Laravel.baseUrl}/api/categories/${this.$route.params.id}/edit`;
+                let uri = `${window.Laravel.baseUrl}/api/categories/${this.$route.params.id}/edit`
                 this.axios.get(uri).then((response) => {
-                    this.category = response.data;
+                    this.category = response.data
                 });
             },
 
             updateCategory()
             {
-              let uri = `${window.Laravel.baseUrl}/api/categories/${this.$route.params.id}`;
+                let uri = `${window.Laravel.baseUrl}/api/categories/${this.$route.params.id}`
                 this.axios.patch(uri, this.category).then((response) => {
-                  this.$router.push({name: 'DisplayCategory'});
+                  this.$router.push({path: '/categories'})
                 });
             }
         }

@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('parent')->get();
         return response()->json($categories);
     }
 
@@ -38,6 +38,7 @@ class CategoriesController extends Controller
     {
         $category = new Category([
           'name' => $request->get('name'),
+          'parent_id' => $request->get('parent_id'),
         ]);
         $category->save();
         return response()->json('Successfully added');
@@ -77,6 +78,7 @@ class CategoriesController extends Controller
     {
         $category = Category::find($id);
         $category->name = $request->get('name');
+        $category->parent_id = $request->get('parent_id');
         $category->save();
 
         return response()->json('Successfully Updated');

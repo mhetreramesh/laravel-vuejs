@@ -5,8 +5,16 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
+            <label>Parent Category</label>
+            <select v-model="category.parent_id" class="form-control">
+              <option v-for="tmpCategory in categories" v-bind:value="tmpCategory.id">
+                  {{ tmpCategory.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Category Name:</label>
-            <input type="text" class="form-control" v-model="category.name">
+            <input type="text" class="form-control" v-model="category.name" required>
           </div>
         </div>
         </div><br />
@@ -21,14 +29,31 @@
   export default {
     data(){
         return{
-          category:{}
+          category:{},
+          categories: [
+            { name: 'Select', id: '' }
+          ]
         }
     },
+
+    created: function()
+    {
+        this.fetchCategories()
+    },
+
     methods: {
+      fetchCategories()
+      {
+        let uri = `${window.Laravel.baseUrl}/api/categories`;
+        this.axios.get(uri).then((response) => {
+            this.categories = response.data
+            this.categories.unshift({ name: 'Select', id: '' })
+        });
+      },
       addCategory(){
         let uri = `${window.Laravel.baseUrl}/api/categories`;
         this.axios.post(uri, this.category).then((response) => {
-          this.$router.push({name: 'CreateCategory'})
+          this.$router.push({path: '/categories'})
         })
     }
   }
