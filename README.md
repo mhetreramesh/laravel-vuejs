@@ -25,4 +25,5 @@
 7. It will start the server at this URL http://localhost:8091
 
 ### For Dev environment:
-1. npm run watch
+1. `npm run watch`
+2. To run tests `composer test`
