@@ -8,14 +8,14 @@ class Category extends Model
 {
     protected $fillable = ['name', 'parent_id'];
 
-    public function childCategories()
+    public function childs()
     {
-        return $this->hasMany('Category', 'parent_id', 'id');
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
     
-    public function parentCategory()
+    public function parent()
     {
-        return $this->belongsTo('Category', 'parent_id');
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
 }
