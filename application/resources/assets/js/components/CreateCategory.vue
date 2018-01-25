@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Create A Category</h1>
+    <h1>Create Category</h1>
     <form v-on:submit.prevent="addCategory">
       <div class="row">
         <div class="col-md-6">
@@ -26,7 +26,7 @@
     },
     methods: {
       addCategory(){
-        let uri = window.Laravel.baseUrl+'/api/categories';
+        let uri = `${window.Laravel.baseUrl}/api/categories`;
         this.axios.post(uri, this.category).then((response) => {
           this.$router.push({name: 'CreateCategory'})
         })

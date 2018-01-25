@@ -13,6 +13,7 @@ import DisplayItem from './components/DisplayItem.vue';
 import EditItem from './components/EditItem.vue';
 import DisplayCategory from './components/DisplayCategory.vue';
 import CreateCategory from './components/CreateCategory.vue';
+import EditCategory from './components/EditCategory.vue';
 
 const routes = [
   {
@@ -39,6 +40,11 @@ const routes = [
     name: 'CreateCategory',
     path: '/categories/create',
     component: CreateCategory
+  },
+  {
+      name: 'EditCategory',
+      path: '/categories/edit/:id',
+      component: EditCategory
   }
 ];
 

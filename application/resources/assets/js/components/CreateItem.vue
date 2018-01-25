@@ -34,9 +34,9 @@
     },
     methods: {
       addItem(){
-        let uri = window.Laravel.baseUrl+'/api/items';
+        let uri = `${window.Laravel.baseUrl}/api/items`
         this.axios.post(uri, this.item).then((response) => {
-          this.$router.push({name: 'DisplayItem'})
+          this.$router.push({path: '/'})
         })
     }
   }

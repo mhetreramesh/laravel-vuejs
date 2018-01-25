@@ -47,16 +47,15 @@
         methods: {
             fetchCategories()
             {
-              let uri = window.Laravel.baseUrl+'/api/categories';
+              let uri = `${window.Laravel.baseUrl}/api/categories`;
               this.axios.get(uri).then((response) => {
                   this.categories = response.data;
               });
             },
             deleteCategory(id)
             {
-              let uri = window.Laravel.baseUrl+`/api/categories/${id}`;
-              this.categories.splice(id, 1);
-              this.axios.delete(uri);
+              let uri = `${window.Laravel.baseUrl}/api/categories/${id}`;
+              this.$router.push({path: '/categories'})
             }
         }
     }
