@@ -5,16 +5,40 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label>Article Name:</label>
-            <input type="text" class="form-control" v-model="item.name">
+            <label>Name:</label>
+            <input type="text" class="form-control" v-model="item.name" required />
           </div>
         </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label>Article Price:</label>
-              <input type="text" class="form-control col-md-6" v-model="item.price" />
+              <label>Price:</label>
+              <input type="number" class="form-control col-md-6" v-model="item.price"  required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>SKU:</label>
+              <input type="text" class="form-control col-md-6" v-model="item.sku" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>EAN:</label>
+              <input type="text" class="form-control col-md-6" v-model="item.ean" required/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Quantity:</label>
+              <input type="number" class="form-control col-md-6" v-model="item.quantity" numeric required/>
             </div>
           </div>
         </div><br />

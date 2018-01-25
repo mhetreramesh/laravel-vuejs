@@ -38,7 +38,10 @@ class ItemController extends Controller
     {
         $item = new Item([
           'name' => $request->get('name'),
-          'price' => $request->get('price')
+          'price' => $request->get('price'),
+          'sku' => $request->get('sku'),
+          'ean' => $request->get('ean'),
+          'quantity' => $request->get('quantity')
         ]);
         $item->save();
         return response()->json('Successfully added');
@@ -79,6 +82,9 @@ class ItemController extends Controller
         $item = Item::find($id);
         $item->name = $request->get('name');
         $item->price = $request->get('price');
+        $item->sku = $request->get('sku');
+        $item->ean = $request->get('ean');
+        $item->quantity = $request->get('quantity');
         $item->save();
 
         return response()->json('Successfully Updated');
