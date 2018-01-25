@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label>Category Name</label>
-                <input type="text" class="form-control" v-model="category.name">
+                <input type="text" class="form-control" v-model="category.name" required>
             </div>
 
             <div class="form-group">

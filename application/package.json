@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "axios": "^0.16.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.0.1",
     "jquery": "^3.1.1",
@@ -21,5 +23,8 @@
     "vue-loader": "^13.0.2",
     "vue-router": "^2.7.0",
     "vue-template-compiler": "^2.4.2"
+  },
+  "dependencies": {
+    "vue-multiselect": "*"
   }
 }

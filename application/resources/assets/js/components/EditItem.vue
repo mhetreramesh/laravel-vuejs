@@ -34,6 +34,18 @@
                 <input type="text" class="form-control" v-model="item.quantity">
             </div>
 
+            
+            <div class="form-group">
+                <label>Categories</label>
+                <multiselect
+                    v-model="item.categories"
+                    :options="categories"
+                    :multiple="true"
+                    track-by="id"
+                    :custom-label="customLabel">
+                </multiselect>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-primary">Update</button>
                 <router-link :to="{ name: 'DisplayItem' }" class="btn btn-default">Cancel</router-link>
@@ -43,20 +55,33 @@
 </template>
 
 <script>
-
+    import Multiselect from 'vue-multiselect'
     export default{
+        components: { Multiselect },
         data(){
             return{
                 item:{},
-                loading:true
+                loading:true,
+                categories: []
             }
         },
 
-        created: function(){
-            this.getItem();
+        created: function() {
+            this.getItem()
+            this.fetchCategories()
         },
 
         methods: {
+            customLabel(option){
+                return `${option.name}`
+            },
+            fetchCategories()
+            {
+                let uri = `${window.Laravel.baseUrl}/api/categories`;
+                this.axios.get(uri).then((response) => {
+                    this.categories = response.data
+                });
+            },
             getItem()
             {
               let uri = `${window.Laravel.baseUrl}/api/items/${this.$route.params.id}/edit`
@@ -76,3 +101,4 @@
         }
     }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

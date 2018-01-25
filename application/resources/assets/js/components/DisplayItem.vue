@@ -18,6 +18,7 @@
                 <td>Name</td>
                 <td>Price</td>
                 <td>Quantity</td>
+                <td>Categories</td>
                 <td>Actions</td>
             </tr>
             </thead>
@@ -28,8 +29,12 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.price }}€</td>
                     <td>{{ item.quantity }}</td>
-                    <td><router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link></td>
-                    <td><button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
+                    <td style="width:10em;">
+                        <span class="badge" v-for="category of item.categories">{{ category.name }}</span>
+                    </td>
+                    <td>
+                        <router-link :to="{name: 'EditItem', params: { id: item.id }}" class="btn btn-primary">Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
