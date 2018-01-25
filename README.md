@@ -1,6 +1,6 @@
 # Tradebyte Senior PHP Developer Test - PIM System
 
-### Tools, Technologies & Frameworks used used
+### Tools, Technologies & Frameworks used
 1. `docker` for environment management
 2. `ngnix` web server
 3. `php 7.1.12` for backend programs
