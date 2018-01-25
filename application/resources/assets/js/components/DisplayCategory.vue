@@ -54,8 +54,13 @@
             },
             deleteCategory(id)
             {
-              let uri = `${window.Laravel.baseUrl}/api/categories/${id}`;
-              this.$router.push({path: '/categories'})
+                for (var key in this.categories) {
+                    if (this.categories[key].id == id) {
+                        this.categories.splice(key, 1);
+                    }
+                }
+                let uri = `${window.Laravel.baseUrl}/api/categories/${id}`;
+                this.axios.delete(uri);
             }
         }
     }
