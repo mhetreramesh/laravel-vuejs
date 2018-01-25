@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-10"></div>
           <div class="col-md-2">
-            <router-link :to="{ name: 'CreateCategory' }" class="btn btn-primary">Create Category</router-link>
+            <router-link :to="{ name: 'CreateCategory' }" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Create Category</router-link>
           </div>
         </div><br />
         <div class="loading" v-if="loading">
@@ -27,8 +27,8 @@
                     <td>{{ category.name }}</td>
                     <td>{{ category.parent ? category.parent.name : '-' }}</td>
                     <td>
-                        <router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary">Edit</router-link>
-                        <button class="btn btn-danger" v-on:click="deleteCategory(category.id)">Delete</button>
+                        <router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteCategory(category.id)"><i class="fa fa-trash"></i>  Delete</button>
                     </td>
                 </tr>
             </tbody>

@@ -3,7 +3,7 @@
         <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Tradebyte PIM</a>
+                <a class="navbar-brand" href="/"><i class="fa fa-database"></i> Tradebyte PIM</a>
             </div>
             <ul class="nav navbar-nav">
                 <router-link tag="li" :exact=true :to="{ name: 'DisplayItem' }" active-class="active">
@@ -12,7 +12,6 @@
                 <router-link tag="li" :to="{ name: 'DisplayCategory' }" active-class="active">
                     <a href="/categories">Categories</a>
                 </router-link>
-
             </ul>
         </div>
         </nav>
