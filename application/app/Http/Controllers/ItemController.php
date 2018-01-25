@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::with('categories')->get();
         return response()->json($items);
     }
 
@@ -44,6 +44,11 @@ class ItemController extends Controller
           'quantity' => $request->get('quantity')
         ]);
         $item->save();
+        $categoryIds = [];
+        foreach($request->get('categories') as $category) {
+            $categoryIds[] = $category['id'];
+        }
+        $item->categories()->sync($categoryIds);
         return response()->json('Successfully added');
     }
 
@@ -66,7 +71,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        $item = Item::find($id);
+        $item = Item::where('id', '=', $id)->with('categories')->get()->first();
         return response()->json($item);
     }
 
@@ -86,7 +91,11 @@ class ItemController extends Controller
         $item->ean = $request->get('ean');
         $item->quantity = $request->get('quantity');
         $item->save();
-
+        $categoryIds = [];
+        foreach($request->get('categories') as $category) {
+            $categoryIds[] = $category['id'];
+        }
+        $item->categories()->sync($categoryIds);
         return response()->json('Successfully Updated');
     }
 

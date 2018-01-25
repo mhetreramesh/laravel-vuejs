@@ -50,13 +50,4 @@ const routes = [
 
 var router = new VueRouter({ mode: 'history', routes: routes});
 
-/*
-var router = new VueRouter({
-      history: true,
-      root: '/app'
-  });
-  router.map(routes);
-  router.start(App, '#app');
-  */
-
 new Vue(Vue.util.extend({ router }, App)).$mount('#app');

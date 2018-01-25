@@ -26,8 +26,10 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
                     <td>{{ category.parent ? category.parent.name : '-' }}</td>
-                    <td><router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary">Edit</router-link></td>
-                    <td><button class="btn btn-danger" v-on:click="deleteCategory(category.id)">Delete</button></td>
+                    <td>
+                        <router-link :to="{name: 'EditCategory', params: { id: category.id }}" class="btn btn-primary">Edit</router-link>
+                        <button class="btn btn-danger" v-on:click="deleteCategory(category.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
