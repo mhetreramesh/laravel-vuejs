@@ -6,7 +6,7 @@
           <div class="col-md-2"><router-link :to="{ name: 'DisplayItem' }" class="btn btn-success">Return to Articles</router-link></div>
         </div>
         <div class="loading" v-if="loading">
-            Loading...
+            <i class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i>
         </div>
         <form v-on:submit.prevent="updateItem" v-else>
             <div class="form-group">
@@ -77,7 +77,7 @@
             },
             fetchCategories()
             {
-                let uri = `${window.Laravel.baseUrl}/api/categories`;
+                let uri = `${window.Laravel.baseUrl}/api/categories/all`;
                 this.axios.get(uri).then((response) => {
                     this.categories = response.data
                 });
@@ -90,7 +90,6 @@
                     this.item = response.data
                 });
             },
-
             updateItem()
             {
               let uri = `${window.Laravel.baseUrl}/api/items/${this.$route.params.id}`

@@ -48,7 +48,7 @@
         methods: {
             fetchCategories()
             {
-                let uri = `${window.Laravel.baseUrl}/api/categories`;
+                let uri = `${window.Laravel.baseUrl}/api/categories/all`;
                 this.axios.get(uri).then((response) => {
                     this.categories = response.data
                     this.categories.unshift({ name: 'Select', id: '' })

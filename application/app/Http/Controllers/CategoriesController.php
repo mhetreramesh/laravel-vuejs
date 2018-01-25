@@ -12,7 +12,18 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+    {
+        $categories = Category::with('parent')->paginate(5);
+        return response()->json($categories);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll()
     {
         $categories = Category::with('parent')->get();
         return response()->json($categories);

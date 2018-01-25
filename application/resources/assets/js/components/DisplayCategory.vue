@@ -9,7 +9,7 @@
           </div>
         </div><br />
         <div class="loading" v-if="loading">
-            Loading...
+            <i class="fa fa-spinner fa-spin fa-3x" aria-hidden="true"></i>
         </div>
         <table class="table table-hover" v-else>
             <thead>
@@ -33,32 +33,27 @@
                 </tr>
             </tbody>
         </table>
+        <v-paginator :resource_url="resource_url" @update="updateResource"></v-paginator>
     </div>
 </template>
 
 <script>
-
+    import VuePaginator from 'vuejs-paginator'
     export default {
+        components: {
+            VPaginator: VuePaginator
+        },
         data(){
             return{
                 categories: [],
                 loading: true,
+                resource_url: `${window.Laravel.baseUrl}/api/categories`
             }
         },
-
-        created: function()
-        {
-            this.fetchCategories()
-        },
-
         methods: {
-            fetchCategories()
-            {
-              let uri = `${window.Laravel.baseUrl}/api/categories`;
-              this.axios.get(uri).then((response) => {
-                  this.loading = false
-                  this.categories = response.data
-              });
+            updateResource(data){
+              this.categories = data
+              this.loading = false
             },
             deleteCategory(id)
             {
