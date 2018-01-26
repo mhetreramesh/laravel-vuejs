@@ -1,4 +1,4 @@
-# Laravel Vuejs application
+# Laravel Vuejs product cateloging application
 
 ### Tools, Technologies & Frameworks used
 1. `docker` for environment management
