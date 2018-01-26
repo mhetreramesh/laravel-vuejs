@@ -1,9 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Tradebye PIM REST API Test",
+        "description": "Classic PIM REST API Test",
         "version": "1.0.0",
-        "title": "Tradebye PIM REST API"
+        "title": "Classic PIM REST API"
     },
     "host": "localhost:8091/api",
     "basePath": "/",

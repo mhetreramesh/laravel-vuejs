@@ -3,7 +3,7 @@
         <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <router-link :exact=true :to="{ name: 'DisplayItem' }" class="navbar-brand" href="/"><i class="fa fa-database"></i> Tradebyte PIM</router-link>
+                <router-link :exact=true :to="{ name: 'DisplayItem' }" class="navbar-brand" href="/"><i class="fa fa-database"></i> Classic</router-link>
             </div>
             <ul class="nav navbar-nav">
                 <router-link tag="li" :exact=true :to="{ name: 'DisplayItem' }" active-class="active">

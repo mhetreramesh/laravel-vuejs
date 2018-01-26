@@ -8,6 +8,11 @@ class Category extends Model
 {
     protected $fillable = ['name', 'parent_id'];
 
+    protected $rules = [
+        'name' => 'required',
+        'parent_id' => 'required'
+    ];
+
     public function childs()
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
