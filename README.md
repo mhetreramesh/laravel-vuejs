@@ -1,4 +1,4 @@
-# Tradebyte Senior PHP Developer Test - PIM System
+# Laravel Vuejs application
 
 ### Tools, Technologies & Frameworks used
 1. `docker` for environment management
